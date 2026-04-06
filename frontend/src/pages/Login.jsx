@@ -35,12 +35,12 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-bg-animated" style={{ minHeight: '100vh', padding: '2rem 0' }}>
+    <div className="auth-bg-animated flex items-center justify-center overflow-hidden" style={{ minHeight: '100vh', width: '100vw', margin: 0, padding: 0 }}>
       <div className="bg-shape shape-1"></div>
       <div className="bg-shape shape-2"></div>
       
       {/* HYBRID SPLIT-SCREEN GLASS PANEL */}
-      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ maxWidth: '1000px', minHeight: '600px', height: 'auto', padding: 0, margin: '0 auto', alignSelf: 'center' }}>
+      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ maxWidth: '1000px', minHeight: '600px', height: 'auto', padding: 0, margin: '2rem' }}>
         
         {/* LEFT SIDE ILLUSTRATION (Hidden on mobile) */}
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.5)' }}>
