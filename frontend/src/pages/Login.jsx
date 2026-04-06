@@ -38,13 +38,13 @@ const Login = () => {
     <div className="auth-bg-animated overflow-hidden" style={{ height: '100vh', width: '100%' }}>
       <div className="bg-shape shape-1"></div>
       <div className="bg-shape shape-2"></div>
-      
+
       {/* HYBRID SPLIT-SCREEN GLASS PANEL */}
       <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ width: '95%', maxWidth: '1000px', minHeight: '500px', height: 'auto', maxHeight: '95vh', padding: 0, margin: 'auto' }}>
-        
+
         {/* LEFT SIDE ILLUSTRATION (Hidden on mobile) */}
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.5)' }}>
-           <img
+          <img
             src="/login-illustration.png"
             alt="Dashboard"
             style={{ width: '85%', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))' }}
@@ -55,9 +55,9 @@ const Login = () => {
         <div className="flex-col justify-center" style={{ flex: 1, padding: '3rem', overflow: 'hidden' }}>
           <div className="w-full relative z-10" style={{ maxWidth: '400px', margin: '0 auto' }}>
             <div className="mb-2" style={{ background: 'var(--color-primary-faint)', padding: '0.75rem', borderRadius: '50%', display: 'inline-flex' }}>
-               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 3v18h18" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" />
-               </svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 3v18h18" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" />
+              </svg>
             </div>
             <h2 className="text-3xl font-black text-main tracking-tight">StatFlow</h2>
             <p className="text-muted text-sm mt-1 mb-8 font-medium">Your financial stats are always in a flow.</p>
@@ -102,7 +102,7 @@ const Login = () => {
 
             <p className="text-center text-muted text-sm mt-8">
               Don't have an account?
-              <span 
+              <span
                 className="text-primary font-bold ml-2 transition-fast"
                 style={{ cursor: 'pointer' }}
                 onClick={() => navigate("/register")}
