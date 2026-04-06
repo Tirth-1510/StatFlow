@@ -70,12 +70,12 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-bg-animated flex flex-col items-center justify-center overflow-hidden" style={{ minHeight: '100vh', width: '100vw', margin: 0, padding: '1rem' }}>
+    <div className="auth-bg-animated overflow-hidden" style={{ height: '100vh', width: '100%' }}>
       <div className="bg-shape shape-1"></div>
       <div className="bg-shape shape-2"></div>
       
       {/* HYBRID SPLIT-SCREEN GLASS PANEL */}
-      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ width: '100%', maxWidth: '1000px', minHeight: '650px', height: 'auto', padding: 0, margin: 0 }}>
+      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ width: '95%', maxWidth: '1000px', minHeight: '600px', height: 'auto', maxHeight: '95vh', padding: 0, margin: 'auto' }}>
         
         {/* LEFT SIDE ILLUSTRATION */}
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.5)' }}>
@@ -83,7 +83,7 @@ const Register = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="flex-col justify-center" style={{ flex: 1, padding: '3rem', overflow: 'hidden' }}>
+        <div className="flex-col justify-center" style={{ flex: 1, padding: '1.5rem', overflow: 'hidden' }}>
           <div className="w-full relative z-10" style={{ maxWidth: '420px', margin: '0 auto' }}>
             
             <div className="mb-2" style={{ background: 'var(--color-primary-faint)', padding: '0.75rem', borderRadius: '50%', display: 'inline-flex' }}>
