@@ -34,12 +34,18 @@
                 </div>
             `;
 
-            await sendEmail(email, "Your StatFlow Verification Code", otpMessage);
+            try {
+                await sendEmail(email, "Your StatFlow Verification Code", otpMessage);
+            } catch (err) {
+                console.warn("⚠️ SMTP Firewall Block Detected (Expected on Render Free Tier).");
+                console.warn(`✅ [DEVELOPER OTP BACKDOOR]: The OTP for ${email} is -> ${otp}`);
+                // Proceed without crashing the signup process
+            }
 
-            res.status(200).json({ success: true, message: "OTP sent to your email!" });
+            res.status(200).json({ success: true, message: "OTP processed! If email fails, check Render Logs." });
         } catch (error) {
             console.error("OTP Error:", error);
-            res.status(500).json({ success: false, message: "Failed to send OTP" });
+            res.status(500).json({ success: false, message: "Failed to generate OTP" });
         }
     };
 
