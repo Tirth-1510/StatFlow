@@ -35,12 +35,12 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-bg-animated overflow-hidden">
+    <div className="auth-bg-animated" style={{ minHeight: '100vh', padding: '2rem 0' }}>
       <div className="bg-shape shape-1"></div>
       <div className="bg-shape shape-2"></div>
       
       {/* HYBRID SPLIT-SCREEN GLASS PANEL */}
-      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ maxWidth: '1000px', height: '600px', padding: 0, margin: '2rem' }}>
+      <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ maxWidth: '1000px', minHeight: '600px', height: 'auto', padding: 0, margin: '0 auto', alignSelf: 'center' }}>
         
         {/* LEFT SIDE ILLUSTRATION (Hidden on mobile) */}
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.5)' }}>
@@ -52,7 +52,7 @@ const Login = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="flex-col justify-center" style={{ flex: 1, padding: '3rem', overflowY: 'auto' }}>
+        <div className="flex-col justify-center" style={{ flex: 1, padding: '3rem', overflow: 'hidden' }}>
           <div className="w-full relative z-10" style={{ maxWidth: '400px', margin: '0 auto' }}>
             <div className="mb-2" style={{ background: 'var(--color-primary-faint)', padding: '0.75rem', borderRadius: '50%', display: 'inline-flex' }}>
                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
