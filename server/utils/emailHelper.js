@@ -1,16 +1,17 @@
 import { Resend } from 'resend';
 
-// Initialize Resend API 
-// We will use RESEND_API_KEY from environment variables
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const sendEmail = async (to, subject, htmlContent) => {
     try {
+        if (!process.env.RESEND_API_KEY) {
+             throw new Error("Missing RESEND_API_KEY in environment variables.");
+        }
+        
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
         const { data, error } = await resend.emails.send({
             from: "StatFlow Team <onboarding@resend.dev>", // Free tier must use verified domain or resend testing address
             to: [to],
             // Resend restricted domains typically dictate you can only send to yourself unless you verify a domain.
-            // If the user wants to email real users, they MUST add their own domain to Resend later.
             subject: subject,
             html: htmlContent,
         });
