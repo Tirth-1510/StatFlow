@@ -2,11 +2,15 @@ import { Resend } from 'resend';
 
 export const sendEmail = async (to, subject, htmlContent) => {
     try {
-        if (!process.env.RESEND_API_KEY) {
+        // Sanitize the key in case it was pasted into Render with spaces or quotes
+        const rawKey = process.env.RESEND_API_KEY || "";
+        const cleanKey = rawKey.replace(/['"]/g, '').trim();
+
+        if (!cleanKey) {
              throw new Error("Missing RESEND_API_KEY in environment variables.");
         }
         
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const resend = new Resend(cleanKey);
 
         const { data, error } = await resend.emails.send({
             from: "StatFlow Team <onboarding@resend.dev>", // Free tier must use verified domain or resend testing address
