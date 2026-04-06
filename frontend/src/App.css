@@ -310,6 +310,126 @@ input, select, textarea {
   z-index: 50;
   padding: 1rem;
 }
+
+/* ================= NEW PREMIUM AUTH UI CLASSES ================= */
+
+/* Animated Hyper-Gradient Backgrounds */
+.auth-bg-animated {
+  background: linear-gradient(-45deg, #4f46e5, #ec4899, #8b5cf6, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Glass Panels for Pro Tech Aesthetic */
+.glass-panel-pro {
+  background: rgba(255, 255, 255, 0.85); /* Highly translucent white */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 10;
+  animation: floatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Specialized Fintech Auth Inputs */
+.auth-input-group {
+  margin-bottom: 1.25rem;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  color: var(--color-text-main);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.auth-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Fancy Glowing Submit Button */
+.auth-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  margin-top: 1.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+}
+
+.auth-btn:active {
+  transform: translateY(1px);
+}
+
+/* Floating Shapes in Background */
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+  opacity: 0.6;
+}
+.shape-1 {
+  width: 400px; height: 400px;
+  background: #fdf2f8; /* Pink faint */
+  top: -100px; right: -100px;
+  animation: floatOrb 10s ease-in-out infinite alternate;
+}
+.shape-2 {
+  width: 500px; height: 500px;
+  background: #e0e7ff; /* Primary faint */
+  bottom: -200px; left: -100px;
+  animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, -50px) scale(1.1); }
+}
+
+/* Responsive Modal Adjustments */
 .modal-content {
   background-color: var(--color-surface);
   border-radius: var(--radius-xl);
