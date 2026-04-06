@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
+import dns from 'dns';
 
+// Force Node.js to use IPv4 first to prevent Render IPv6 ENETUNREACH routing errors
+dns.setDefaultResultOrder('ipv4first');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
