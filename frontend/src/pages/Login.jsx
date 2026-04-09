@@ -43,7 +43,7 @@ const Login = () => {
       <div className="glass-panel-pro flex flex-row overflow-hidden" style={{ width: '95%', maxWidth: '1000px', minHeight: '500px', height: 'auto', maxHeight: '95vh', padding: 0, margin: 'auto' }}>
 
         {/* LEFT SIDE ILLUSTRATION (Hidden on mobile) */}
-        <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.5)' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
             src="/login-illustration.png"
             alt="Dashboard"
