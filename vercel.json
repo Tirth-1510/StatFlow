@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://stat-flow-tau.vercel.app/api/:path*"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/frontend/dist/assets/:path*"
+    },
+    {
+      "source": "/logo.png",
+      "destination": "/frontend/dist/logo.png"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/frontend/dist/favicon.ico"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/dist/index.html"
+    }
+  ]
+}
