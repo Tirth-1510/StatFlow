@@ -6,8 +6,13 @@ import Product from "../models/Product.js";
  */
 const addOrder = async (req, res) => {
   try {
-    const customerId = req.user._id;
-    const { product, quantity } = req.body;
+    let customerId = req.user._id;
+    const { product, quantity, targetCustomerId } = req.body;
+
+    // Allow admins to place orders on behalf of other customers
+    if (req.user.role === "admin" && targetCustomerId) {
+      customerId = targetCustomerId;
+    }
 
     if (!product || !quantity || quantity <= 0) {
       return res.status(400).json({ success: false, message: "Product and valid quantity are required" });

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CustomerProducts = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const targetCustomerId = location.state?.targetCustomerId;
+  const targetCustomerName = location.state?.targetCustomerName;
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -116,6 +119,7 @@ const CustomerProducts = () => {
         {
           product: orderData.productId,
           quantity: orderData.quantity,
+          ...(targetCustomerId && { targetCustomerId }),
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -147,6 +151,24 @@ const CustomerProducts = () => {
           <p className="text-muted">Browse products and place your orders.</p>
         </div>
       </div>
+
+      {targetCustomerName && (
+        <div style={{
+          backgroundColor: 'var(--color-primary-faint)',
+          border: '1px solid var(--color-primary)',
+          color: 'var(--color-primary)',
+          padding: '1rem 1.5rem',
+          borderRadius: 'var(--radius-md)',
+          marginBottom: '1.5rem',
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}>
+          <span>👤</span>
+          Admin Mode: You are currently placing orders on behalf of <strong>{targetCustomerName}</strong>.
+        </div>
+      )}
 
       {/* Filters Section */}
       <div className="card" style={{ padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>

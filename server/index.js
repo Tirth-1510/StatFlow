@@ -16,6 +16,7 @@ import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/user.js";
 import orderRoutes from "./routes/order.js";
 import dashboardRoutes from "./routes/dashboard.js";
+import billRoutes from "./routes/bill.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/bills", billRoutes);
 
 // Serve frontend in production
 app.use(express.static(path.join(__dirname, "../frontend/dist")));

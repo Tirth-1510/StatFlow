@@ -1,8 +1,13 @@
 import multer from 'multer';
 import fs from 'fs';
+import os from 'os';
+import path from 'path';
 
-// Ensure uploads directory exists on Render
-const uploadDir = 'uploads/';
+// Ensure uploads directory exists on Render / Vercel
+const uploadDir = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'uploads')
+  : 'uploads/';
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }

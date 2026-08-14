@@ -20,6 +20,7 @@ const Profile = lazy(() => import('./components/Profile.jsx'))
 const Summary = lazy(() => import('./components/Summary.jsx'))
 const AdminOrders = lazy(() => import('./components/AdminOrders.jsx'))
 const UserOrders = lazy(() => import('./components/UserOrders.jsx'))
+const PaymentLedger = lazy(() => import('./components/PaymentLedger.jsx'))
 
 // Fallback Loading Screen to show while downloading chunks
 const LoadingScreen = () => (
@@ -78,6 +79,8 @@ function App() {
             <Route path='suppliers' element={<Suppliers />} />
             <Route path='orders' element={<AdminOrders />} />
             <Route path='users' element={<Users />} />
+            <Route path='payment-ledger' element={<PaymentLedger />} />
+            <Route path='place-order' element={<CustomerProducts />} />
             <Route path='profile' element={<Profile />} />
             <Route path='logout' element={<Logout />} />
           </Route>

@@ -1,20 +1,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import BulkUserModal from './BulkUserModal'; 
 
 const Users = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        address: "",
-        role: "",
-    });
+    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
-    const [openBulkModal, setOpenBulkModal] = useState(false); 
 
     const fetchUsers = useCallback(async (isSilent = false) => {
         if (!isSilent) setLoading(true);
@@ -50,27 +44,6 @@ const Users = () => {
         );
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(
-                "/api/users/add",
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("pos-token")}`,
-                    },
-                }
-            );
-            if (response.data.success) {
-                setFormData({ name: "", email: "", password: "", address: "", role: "" });
-                fetchUsers(true); // Silent refresh
-            }
-        } catch (error) {
-            alert(error.response?.data?.message || "Error adding user.");
-        }
-    };
-
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure? This will permanently remove this user account.")) {
             try {
@@ -92,11 +65,6 @@ const Users = () => {
         }
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
-
     if (loading) return (
         <div className="flex items-center justify-center h-screen">
             <p className="text-xl font-bold text-muted">Loading User Records...</p>
@@ -112,51 +80,13 @@ const Users = () => {
                         User Management
                         {refreshing && <span className="badge badge-primary">Updating...</span>}
                     </h1>
-                    <p className='text-muted'>Create and monitor system users, admins, and customers.</p>
+                    <p className='text-muted'>Monitor system users, admins, and customers.</p>
                 </div>
-                <button 
-                    onClick={() => setOpenBulkModal(true)}
-                    className="btn btn-success"
-                >
-                    Bulk Import Users
-                </button>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 2fr)', gap: '2rem' }}>
-                {/* Left side: Add User Form */}
-                <div>
-                    <div className="card sticky-sidebar" style={{ padding: '2rem' }}>
-                        <h2 className="text-2xl font-black mb-6 text-primary">👤 New User</h2>
-                        <form className="flex-col gap-4" onSubmit={handleSubmit}>
-                            <div className="input-group">
-                                <label className="input-label">Full Name</label>
-                                <input type="text" placeholder='John Doe' name='name' value={formData.name} className="input-field" onChange={handleChange} required />
-                            </div>
-                            <div className="input-group">
-                                <label className="input-label">Email Address</label>
-                                <input type="email" placeholder='john@example.com' name='email' value={formData.email} className="input-field" onChange={handleChange} required />
-                            </div>
-                            <div className="input-group">
-                                <label className="input-label">Password</label>
-                                <input type="password" placeholder='••••••••' name='password' value={formData.password} className="input-field" onChange={handleChange} required />
-                            </div>
-                            <div className="input-group">
-                                <label className="input-label">Assign Role</label>
-                                <select name="role" value={formData.role} className="input-field" onChange={handleChange} required>
-                                    <option value="">Select Role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="customer">Customer</option>
-                                </select>
-                            </div>
-                            <button type='submit' className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-                                Create Account
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                {/* Right side: User Table */}
-                <div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                {/* User Table */}
+                <div style={{ width: '100%' }}>
                     <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
                         <span style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-muted)' }}>🔍</span>
                         <input 
@@ -192,7 +122,15 @@ const Users = () => {
                                                     {user.role}
                                                 </span>
                                             </td>
-                                            <td style={{ textAlign: 'center' }}>
+                                            <td style={{ textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+                                                {user.role === 'customer' && (
+                                                    <button 
+                                                        className="btn btn-outline" style={{ padding: '0.25rem 0.75rem', fontSize: '0.75rem' }}
+                                                        onClick={() => navigate('/admin-dashboard/place-order', { state: { targetCustomerId: user._id, targetCustomerName: user.name } })}
+                                                    >
+                                                        Place Order
+                                                    </button>
+                                                )}
                                                 <button 
                                                     className="btn btn-danger" style={{ padding: '0.25rem 0.75rem', fontSize: '0.75rem' }}
                                                     onClick={() => handleDelete(user._id)}
@@ -216,12 +154,6 @@ const Users = () => {
                 </div>
             </div>
 
-            {/* Bulk Upload Modal */}
-            <BulkUserModal 
-                isOpen={openBulkModal} 
-                onClose={() => setOpenBulkModal(false)} 
-                refreshUsers={() => fetchUsers(true)} 
-            />
         </div>
     );
 };

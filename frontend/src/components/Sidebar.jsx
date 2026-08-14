@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { NavLink } from 'react-router'; // ✅ fixed import
 import {
   FaBox, FaCog, FaHome, FaShoppingCart,
-  FaSignOutAlt, FaTable, FaTruck, FaUsers
+  FaSignOutAlt, FaTable, FaTruck, FaUsers, FaFileInvoiceDollar
 } from 'react-icons/fa';
 
 const Sidebar = () => {
@@ -13,7 +13,7 @@ const Sidebar = () => {
     { name: "Products", path: "/admin-dashboard/products", icon: <FaBox />, isParent: false },
     { name: "Suppliers", path: "/admin-dashboard/suppliers", icon: <FaTruck />, isParent: false },
     { name: "Orders", path: "/admin-dashboard/orders", icon: <FaShoppingCart />, isParent: false },
-    /*{ name: "Bill", path: "/admin-dashboard/bills", icon: <FaBill />, isParent: false },*/
+    { name: "Payment Ledger", path: "/admin-dashboard/payment-ledger", icon: <FaFileInvoiceDollar />, isParent: false },
     { name: "Users", path: "/admin-dashboard/users", icon: <FaUsers />, isParent: false },
     { name: "Profile", path: "/admin-dashboard/profile", icon: <FaCog />, isParent: false },
     { name: "Logout", path: "/admin-dashboard/logout", icon: <FaSignOutAlt />, isParent: false },
